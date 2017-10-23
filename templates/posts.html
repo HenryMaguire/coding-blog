@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Talking Machines with Henry</h1>
+
+<p>Hi, my name is Henry and welcome to my blog. I'm a Physics PhD student in Manchester and over the last year or so I've got really interested in AI and Machine Learning. I have a couple of ongoing projects which I would like to share with the world and I'm hoping that this blog will help to develop my ideas.
+<br> <br>
+One of my projects follows on from a recent study I did into <a href="https://github.com/HenryMaguire/machine-translator"> Neural Machine Translation </a> where I trained a simple sequence-to-sequence model in Tensorflow to translate text from French to English. I would like to expand on this work and study this area a lot more.
+<br> <br>
+The second project is just a fun game idea that I have, called <a href="https://github.com/HenryMaguire/">One Word Story</a>. The user and a bot collaborate to create a story, taking turns to say one word at a time. I hope to:
+<ul>
+- Develop a convincing Machine Learning solution to the generation of feasible stories<br>
+- Create a Flask Web application<br>
+- Incorporate speech recognition and text-to-speech into the app<br>
+</ul>
+</p>
+
+<h2> In chronological order...</h2>
+{% for post in posts %}
+    <a href="{{ url_for('post', name=post.path.replace('posts/', '')) }}">
+        {{ post.title }}
+    </a>
+    <small>{{ post.date }}</small><br>
+{% endfor %}
+
+</body>
+</html>
