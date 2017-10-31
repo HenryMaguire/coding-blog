@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talking Machines with Henry</title>
+</head>
+<body>
+<div class="container">
+  <div class="navbar navbar-default">
+      <div class="nav-pages"><a href="/">home</a> </div>
+      <div class="nav-pages"><a href="/blog/">blog</a></div>
+      <div class="nav-pages"><a href="/about/">about</a></div>
+      <div class="nav-pages"><a href="/one-word-story/">one word story</a></div>
+      <div class="nav-pages"><a href="/translator/">translaitch</a></div>
+  </div>
+<div class="row">
+  <div class="col-md-6">
+    <h1>Talking Machines with Henry</h1>
+    <p>Hi, my name is Henry and welcome to my blog. <br> <br> I'm a Physics PhD student in Manchester, UK who has got really interested in AI and Machine Learning over the last two years. <br> <br>
+    This blog is about taking Machine Learning ideas and making them into finished applications, showing all the development stages in between.</p>
+  </div>
+  <div class="col-md-6">
+    <a href="/about/"><img src="http://via.placeholder.com/500x300"></a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Neural Machine Translation</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <a href="/machine_translation_p1"><img src="http://via.placeholder.com/500x300"></a>
+  </div>
+  <div class="col-md-6">
+    <p class="main-text">
+      One of my projects is about <a href="https://github.com/HenryMaguire/machine-translator"> Neural Machine Translation </a> where I train a model to translate text from French to English.
+    <h4><i>In this project, I...</i></h4>
+      <ul>
+        <li> Build the translation system from scratch using Tensorflow</li>
+        <b>...and, coming soon...</b>
+        <li> Make the model deeper, increasing translation accuracy by X% </li>
+        <li> Employ attention mechanisms and improve results by a further Y% </li>
+        <li> Embed the latest model in a web application using Flask </li>
+      </ul>
+      </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-6">
+    <h2>One Word Story</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <p class="main-text">
+      The second project is just a fun game idea that I had, called <a href="https://github.com/HenryMaguire/one-word-story">One Word Story</a>. The user and a bot collaborate to create a story, taking turns to say one word at a time.
+      <h4><i>In this project, I...</i></h4>
+      <ul>
+      <li> Test a traditional NLP approach to story generation (spoiler: bad!)</li>
+      <b>...and, coming soon...</b>
+      <li> Create a much more convincing model by using the power of Deep Learning</li>
+      <li> Put the game together and make a Flask Web application</li>
+      <li> Incorporate pre-trained speech recognition and text-to-speech models to improve the UX</li>
+      </ul>
+      </p>
+
+  </div>
+  <div class="one-word-story"><a href="/one-word-story"><img src="http://via.placeholder.com/500x300"></a>
+  </div>
+</div>
+
+
+
+</body>
+</html>

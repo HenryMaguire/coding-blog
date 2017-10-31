@@ -1,0 +1,44 @@
+title: One Word Story (Part 1)
+date: 24-10-2017
+next: one_word_story_p2
+
+# _One Word Story_
+## Part 1 - Building an AI story-telling game in Python
+
+In a [previous tutorial](/language_modelling/) I sowed the seeds necessary to implement a reasonably convincing language model. By this I mean we answered the question **given the prevous words in a sequence, what is the probability of word X being next?** in two different ways. The first way, was gathering descriptive statistics on some training text and allowing this to form the basis of conditional probability distributions. The problem we found with this method was that the model found it very difficult to _generalise_ from past examples. In other words, the likelihood of a given word appearing next was determined by whether it had appeared in that exact context in the training data so the model had no ability to choose a similar word in meaning unless this slightly different realisation had been seen already. This N-gram model was also difficult to improve without having prior knowledge of the way a language works, although I'm sure it would be possible to introduce word embeddings into the mix somehow.
+
+To resolve the short-comings of the above model, we investigated a different approach using recurrent neural networks. Part of the standard architecture means that words are converted from a sparse _one-hot_ encoding into a distributed vector representation called embeddings. When trained effectively, these embeddings can learn the semantic and syntactical similarities between different words and so enable language models to interpolate between previous training examples in a higher-dimensional space. This method will also be applied to the problem of Machine Translation in later posts.
+
+In order to increase our model's ability to learn deeper and more abstract qualities of the text we stacked multiple recurrent neural networks together. Dropout can then be introduced between layers to increase the robustness of the model by forcing it to learn the same representations of data in different ways across the network. The effect that different hyper-parameter regimes had on predictions were investigated in the previous post, here we will use this insight to choose an optimal architecture given the practical restrictions of building our word game.
+
+## Settling on an architecture
+
+**A few requirements of our application**
+
+- Although we will train our model on a GPU, we may like to make predictions on a CPU so that it can eventually be run on a webserver (not sure how running a web app works yet).
+
+- The AI will need to react to user input in real time. This means that predictions need to be fast to stop the user getting bored!
+
+**Things to define**
+
+- How to batch the data
+
+- During training: feed in previously generated tokens or ground truth training data? Annealing between two?
+
+- Hyperparameters (number of hidden units, dropout probability, number of layers, batch size)
+
+- Greedy prediction or Beam Search?
+
+##  Building the game in Python
+
+Here define the platform of the game. Questions to consider:
+
+- Who goes first?
+
+- When does a story end?
+
+- Is there a scoring system?
+
+- What happens when the user gives a word the bot doesn't know?
+
+- Will the bot greedily

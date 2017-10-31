@@ -38,4 +38,7 @@ closeness unless exact examples have been seen before.
 - Text to speech using a pre-trained model.
 
 **And beyond...**
-- Using images as a seed of _inspiration_ for the story bot or to generate pictoral descriptions/summaries of stories
+- Using images as a seed of _inspiration_ for the story bot or to generate pictorial descriptions/summaries of stories
+
+## Improvements
+- Decide on whether to make the content less Jargon-filled on the main website. 
