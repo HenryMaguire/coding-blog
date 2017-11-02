@@ -1,9 +1,11 @@
 title: One Word Story (Part 1)
-date: 24-10-2017
+date: 23-10-2017
 next: one_word_story_p2
+picture: "http://via.placeholder.com/500x300"
+summary: "Building a simple word game on the web using Flask."
 
 # _One Word Story_
-## Part 1 - Building an AI story-telling game in Python
+## Part 1 - _Building an AI story-telling game in Python_
 
 In a [previous tutorial](/language_modelling/) I sowed the seeds necessary to implement a reasonably convincing language model. By this I mean we answered the question **given the prevous words in a sequence, what is the probability of word X being next?** in two different ways. The first way, was gathering descriptive statistics on some training text and allowing this to form the basis of conditional probability distributions. The problem we found with this method was that the model found it very difficult to _generalise_ from past examples. In other words, the likelihood of a given word appearing next was determined by whether it had appeared in that exact context in the training data so the model had no ability to choose a similar word in meaning unless this slightly different realisation had been seen already. This N-gram model was also difficult to improve without having prior knowledge of the way a language works, although I'm sure it would be possible to introduce word embeddings into the mix somehow.
 
