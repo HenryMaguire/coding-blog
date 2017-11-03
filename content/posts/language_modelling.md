@@ -1,11 +1,14 @@
-title: Intro to Language Models in Python
+title: Language Modelling in Python
 date: 22-10-2017
 next: one_word_story_p1
+picture: "http://via.placeholder.com/500x300"
+summary: "How to make a bot talk: N-gram models and Recurrent Neural Networks."
 
-# An introduction to Language Modelling (Using Python and Tensorflow)
+# An introduction to Language Modelling
+#(_in Python and Tensorflow_)
 
-## Generative language models
-An ongoing problem in Machine Learning is: how do I generate data that _looks like_ some given dataset? For example, it might be useful to know which notes finish a bar of music to make it sound like Jazz. In designing a text-to-speech algorithm, one would need to generate a sequence of sounds which best match the text. It may be useful to generate images just by feeding a caption into an algorithm.  It might also be useful to make the responses of a chatbot _feel natural_ given the entire history of its conversation with the user. Even in machine translation, you would like to **generate** a sequence in Language $T$ given the same sequence but in language $S$. Deep learning has provided a huge boost to all of these fields in recent years.
+### Generative language models
+An ongoing problem in Machine Learning is: how do I generate data that _looks like_ some given dataset? For example, it might be useful to know which notes finish a bar of music to make it sound like Jazz. In designing a text-to-speech algorithm, one would need to generate a sequence of sounds which best match the text. It may be useful to generate images just by feeding a caption into an algorithm.  It might also be useful to make the responses of a chatbot _feel natural_ given the entire history of its conversation with the user. Even in machine translation, you would like to **generate** a sequence in Language $T$ given the same sequence but in language $$S$$. Deep learning has provided a huge boost to all of these fields in recent years.
 
 
 

@@ -1,23 +1,43 @@
 import sys, os
-from flask import Flask, render_template, Markup, url_for
+from flask import Flask, render_template, Markup, url_for, request
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_frozen import Freezer
-from flask.ext.misaka import Misaka
-import markdown
+from flask.ext.misaka import Misaka, markdown
+#import markdown
 
+app = Flask(__name__)
+Misaka(app)
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from init_database import Story, Base
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'content'
 POST_DIR = 'posts'
+#FLATPAGES_MARKDOWN_EXTENSIONS = ['codehilite', 'toc']
 
-app = Flask(__name__)
-md = Misaka(math=True, math_explicit=True)
-md.init_app(app)
+
+#md = Misaka(math=True, math_explicit=True)
+#md.init_app(app)
 app.static_folder = 'static'
 flatpages = FlatPages(app)
 freezer = Freezer(app)
 app.config.from_object(__name__)
+
+engine = create_engine('sqlite:///stories.db')
+Base.metadata.bind=engine
+DBSession = sessionmaker(bind = engine)
+session = DBSession()
+
+try:
+    session.rollback()
+    testStory = Story(id = 6, story_text='Hello world')
+    session.add(testStory)
+    session.commit()
+except:
+    print "already in database"
 
 @app.context_processor
 def override_url_for():
@@ -46,22 +66,38 @@ def index():
 def posts():
     posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
     posts.sort(key=lambda item:item['date'], reverse=False)
-    return render_template('posts.html', posts=posts)
+    return render_template('blog.html', posts=posts)
 
 @app.route("/about/")
 def about():
     return render_template('about.html')
 
-@app.route("/one-word-story/")
+
+s = ''
+@app.route("/one-word-story/", methods=['GET', 'POST'])
 def ows_game():
-    return render_template('one-word-story.html')
+    global s
+    if request.method == 'POST':
+        # If POST, take new word and add it to the database
+        # Eventually, the bot will also make a word
+        new_word = request.form['new_word']
+        s+= new_word+' '
+        # Pass the text to the AI which generates two words - if the 2nd is punctuation pass both to HTML.
+        return render_template('one-word-story.html', generated_story=s)
+    else:
+        # If GET, create new database with something like a session_ID and then the story
+        # Query the stories database to find all story IDs then make a new one
+        s = ''
+        return render_template('one-word-story.html')
 
 @app.route('/<name>/')
 def post(name):
     path = '{}/{}'.format(POST_DIR, name)
     post = flatpages.get_or_404(path)
-    #post = Markup(markdown.markdown(post)) # Passing HTML is destroying the latex math
-    return render_template('post.html', post=post)
+    text = post.html # Passing HTML is destroying the latex math
+    text=markdown(text, math=True)
+    print text
+    return render_template('post.html', post=post, text=text)
 
 
 if __name__ == "__main__":

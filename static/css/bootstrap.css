@@ -246,6 +246,10 @@ figure {
 img {
   vertical-align: middle;
 }
+.OWS-input {
+  display: inline-block;
+  text-align: center;
+}
 .img-responsive {
   display: block;
   max-width: 100%;
